@@ -1,1 +1,29 @@
 /* your css code goes here */
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#nav {
+  background-color: #000;
+  margin: 0;
+  padding: 1em 0;
+}
+
+#select-month {
+  margin-right: 1em;
+}
+
+
+.calendar-cells {
+  border: 1px solid #333;
+  padding: 0.5em 5em 5em 0.5em;
+}
+
+table {
+  width: 960px;
+}
+
+.bookEnd {
+  background-color: #ccc;
+}
