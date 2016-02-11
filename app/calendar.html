@@ -1,19 +1,32 @@
+<div id="nav">
+    <div class="container">
+        <select name="month" id="select-month" ng-change="buildCalendar()" ng-options="month.id as month.name for month in months" ng-model="month">
+          
+          
+        </select>
+
+        <select name="year" ng-change="buildCalendar()" id="yr" ng-options="year for year in years" ng-model="year">
+          
+        </select>
+      </div>
+    </div>
+
 <div class="container" id="calendar">
   <table>
     <tr>
-      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== currentMonth }" ng-repeat="day in weekOne">{{ day.day }}</td> 
+      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== month }" ng-repeat="day in weekOne">{{ day.day }}</td> 
     </tr>
     <tr>
-      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== currentMonth }" ng-repeat="day in weekTwo">{{ day.day }}</td> 
+      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== month }" ng-repeat="day in weekTwo">{{ day.day }}</td> 
     </tr>
     <tr>
-      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== currentMonth }" ng-repeat="day in weekThree">{{ day.day }}</td> 
+      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== month }" ng-repeat="day in weekThree">{{ day.day }}</td> 
     </tr>
     <tr>
-      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== currentMonth }" ng-repeat="day in weekFour">{{ day.day }}</td> 
+      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== month }" ng-repeat="day in weekFour">{{ day.day }}</td> 
     </tr>
     <tr>
-      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== currentMonth }" ng-repeat="day in weekFive">{{ day.day }}</td> 
+      <td class="calendar-cells" ng-class="{ bookEnd: day.month !== month }" ng-repeat="day in weekFive">{{ day.day }}</td> 
     </tr>
     
   </table>
