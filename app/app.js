@@ -1,30 +1,5 @@
 var app = angular.module('calendarDemoApp', []);
 
-  // app.factory('getCurrentMonthAndYear', function() {
-  //       return {
-  //         date: function() { new Date(); },
-  //         month: function() { date.getMonth(); },
-  //         year: function() { date.getFullYear(); }
-  //       };
-  // });
-  
-  app.directive('giveMonthsYears', function() {
-      return {
-        restrict: 'EA',
-        templateUrl: 'monthsyears.html',
-        scope: true,
-        controller: function($scope, $element, $attrs) {
-            
-
-            $scope.getDate = function() {
-              return new Date($scope.year, $scope.month, 1);
-            };
-
-        }
-      };
-  });
-
-
   app.directive('showCalendar', function() {
       return {
         restrict: 'EA',
@@ -37,44 +12,31 @@ var app = angular.module('calendarDemoApp', []);
           $scope.year = $scope.date.getFullYear();
           $scope.years = [];
 
+          //Pushes all possible years the calendar will display to the years array
           for(i = $scope.year - 20; i < $scope.year + 20; i++) {
               $scope.years.push(i);
-
           } 
           
           $scope.buildCalendar = function() {
-             console.log($scope.year + ' ' + $scope.month);
 
+            //Updates $scope.date when a new month and/or year is selected
             $scope.date = new Date($scope.year, $scope.month, 1);
 
-            //Get current month data
+            //Gets calendar object data
             $scope.calendarData = CalendarRange.getMonthlyRange($scope.date);
             $scope.days = $scope.calendarData.days;
-            console.log($scope.date);
-
-            //Separates month data object into weeks and stores the values in arrays for each week
-            $scope.weekOne = [];
-            $scope.weekTwo = [];
-            $scope.weekThree = [];
-            $scope.weekFour = [];
-            $scope.weekFive = [];
-
-            buildWeeks($scope.days, $scope.weekOne, 0, 7);
-            buildWeeks($scope.days, $scope.weekTwo, 7, 14);
-            buildWeeks($scope.days, $scope.weekThree, 14, 21);
-            buildWeeks($scope.days, $scope.weekFour, 21, 28);
-            buildWeeks($scope.days, $scope.weekFive, 28, 35);
+            
+            //Builds each week for calendar
+            $scope.weekOne = $scope.days.slice(0, 7);
+            $scope.weekTwo = $scope.days.slice(7, 14);
+            $scope.weekThree = $scope.days.slice(14, 21);
+            $scope.weekFour = $scope.days.slice(21, 28);
+            $scope.weekFive = $scope.days.slice(28, 35);
+            
           };
 
           $scope.buildCalendar();
-
-          function buildWeeks(days, week, start, limit) {
-        
-            for(var i = start; i < limit; i++) {
-                week.push(days[i]); 
-            }
-             return week;
-          }
+          
         }
       };
   });
