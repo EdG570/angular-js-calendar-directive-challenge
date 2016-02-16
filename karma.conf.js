@@ -15,10 +15,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './bower_components/angular/angular.js',
-      './bower_components/angular-mocks/angular-mocks.js',
-      'appSpec.js',
-      'app.js'
+      'app/bower_components/angular/angular.js',
+      'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/utilities/calendar-range/calendarRange.js',
+      'app/appSpec.js',
+      'app/app.js',
+      'app/calendar.html'
     ],
 
 
@@ -30,10 +32,12 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'calendar.html': 'ng-html2js'
+        'app/calendar.html': 'ng-html2js'
     },
 
-
+    ngHtml2JsPreprocessor: {
+        stripPrefix: 'app/'
+    },
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
